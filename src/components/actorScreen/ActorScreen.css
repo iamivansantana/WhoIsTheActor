@@ -1,0 +1,112 @@
+.actor-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto auto auto 1fr;
+	grid-template-areas:
+		'Back Back Back'
+		'Actor Movies Movies'
+		'DescTittle DescTittle DescTittle'
+		'DescImg DescText DescText';
+	width: 100%;
+	height: 100%;
+}
+.grid-area-back {
+	grid-area: Back;
+	/* background-color: turquoise; */
+	border-bottom: 1px solid #cccccc;
+}
+.grid-area-actor {
+	grid-area: Actor;
+	/* background-color: violet; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 1rem;
+}
+.grid-area-movies {
+	grid-area: Movies;
+	/* background-color: yellow; */
+	overflow: hidden;
+}
+.grid-area-descTittle {
+	grid-area: DescTittle;
+	/* background-color: tomato; */
+}
+.grid-area-descImg {
+	grid-area: DescImg;
+	/* background-color: springgreen; */
+}
+.grid-area-descText {
+	grid-area: DescText;
+	/* background-color: slateblue; */
+	color: #626262;
+	padding: 5%;
+}
+.actor-img {
+	width: 300px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 0px rgb(114, 114, 114);
+}
+.img-container {
+	width: 80%;
+	height: 400px;
+	position: relative;
+}
+.carruselContainer {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/* slider */
+.sliderCarousel {
+	display: grid;
+	grid-auto-flow: column;
+	overflow: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+
+	scrollbar-color: #000 transparent;
+	scrollbar-width: thin;
+	height: 100%;
+	width: 100%;
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(230, 230, 230);
+}
+.sliderCarousel::-webkit-scrollbar {
+	-webkit-appearance: none;
+}
+.sliderCarousel::-webkit-scrollbar:horizontal {
+	height: 8px;
+}
+.sliderCarousel::-webkit-scrollbar-thumb {
+	background-color: #000;
+	border-radius: 30px;
+}
+@media (max-width: 500px) {
+	.actor-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto auto auto auto 1fr;
+		grid-template-areas:
+			'Back'
+			'Actor'
+			'Movies'
+			'DescTittle'
+			'DescImg'
+			'DescText';
+		width: 100%;
+		height: 100%;
+	}
+	.actor-img {
+		margin-left: 50%;
+		transform: translateX(-50%);
+		width: 50%;
+	}
+	.img-container {
+		width: 70%;
+		height: 300px;
+		position: relative;
+	}
+}
