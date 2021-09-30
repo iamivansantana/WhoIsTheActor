@@ -13,7 +13,7 @@
 .grid-area-back {
 	grid-area: Back;
 	/* background-color: turquoise; */
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid var(--borderPrimaryColor);
 }
 .grid-area-actor {
 	grid-area: Actor;
@@ -25,21 +25,17 @@
 }
 .grid-area-movies {
 	grid-area: Movies;
-	/* background-color: yellow; */
 	overflow: hidden;
 }
 .grid-area-descTittle {
 	grid-area: DescTittle;
-	/* background-color: tomato; */
 }
 .grid-area-descImg {
 	grid-area: DescImg;
-	/* background-color: springgreen; */
 }
 .grid-area-descText {
 	grid-area: DescText;
-	/* background-color: slateblue; */
-	color: #626262;
+	color: var(--textColorSecondary);
 	padding: 5%;
 }
 .actor-img {
@@ -67,12 +63,12 @@
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 
-	scrollbar-color: #000 transparent;
+	scrollbar-color: var(--textColorPrimary) transparent;
 	scrollbar-width: thin;
 	height: 100%;
 	width: 100%;
 	background-color: rgb(245, 245, 245);
-	border: 1px solid rgb(230, 230, 230);
+	border: 1px solid var(--borderPrimaryColor);
 }
 .sliderCarousel::-webkit-scrollbar {
 	-webkit-appearance: none;
@@ -81,7 +77,7 @@
 	height: 8px;
 }
 .sliderCarousel::-webkit-scrollbar-thumb {
-	background-color: #000;
+	background-color: var(--textColorPrimary);
 	border-radius: 30px;
 }
 @media (max-width: 500px) {

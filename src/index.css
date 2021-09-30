@@ -1,4 +1,14 @@
 @import '~antd/dist/antd.css';
+* {
+	--backgroundColor: #f6f6f6;
+	--primaryColor: #ffffff;
+	--errorBackgroundColor: #ff6e6e;
+	--borderPrimaryColor: #cccccc;
+
+	--textColorPrimary: #000000;
+	--textColorSecondary: #626262;
+	--textColorError: #ffffff;
+}
 
 body {
 	margin: 0;
@@ -11,7 +21,7 @@ body {
 	width: 100%;
 	height: auto;
 	min-height: 100vh;
-	background-color: rgb(246, 246, 246);
+	background-color: var(--backgroundColor);
 	display: flex;
 	justify-content: center;
 }
@@ -78,8 +88,15 @@ body {
 }
 
 .container_buscador {
-	background-color: #ffffff;
+	background-color: var(--primaryColor);
 	padding: 5%;
 	border-radius: 8px;
 	box-shadow: 0px 0px 2px 1px rgb(204, 204, 204);
+}
+.error_Msg {
+	background-color: var(--errorBackgroundColor);
+	margin: 1rem;
+	padding: 0.5rem;
+	border-radius: 5px;
+	color: var(--textColorError);
 }

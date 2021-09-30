@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 import { types } from '../types/types';
 
-//Inicializacion del Estado
+//Estado inicial
 const initialState = {
-	actor: { gender: 1 },
+	actor: {},
 	movies: [],
 	movieDetails: {},
 };

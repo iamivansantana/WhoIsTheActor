@@ -13,26 +13,29 @@ const ActorScreen = ({ history }) => {
 	const [errorState, setErrorState] = useState(false);
 
 	//se utiliza el hook useParams() para obtener/acceder a los parametros del path
-	//se desestructura heroeId
+	//se desestructura actorId
 	const { actorId } = useParams();
 
+	//Suscripciones al estado en el store
 	const actor = useSelector((state) => state.actor);
 	const movies = useSelector((state) => state.movies);
 	const movieDetails = useSelector((state) => state.movieDetails);
-
+	//Dispatch para mandar actions y payloads al state
 	const dispatch = useDispatch();
 
+	//Efecto que controla las peticiones a la api de themoviedb
 	useEffect(() => {
-		// Want to use async/await? Add the `async` keyword to your outer function/method.
+		//Metodo para hacer la peticion a la API
 		const getMovies = async () => {
-			const keyivan = '03e24162caecebf27726854d662383c7';
-			// const key2 = '30db1237b9167f8afaf9e065b90d16b8';
+			const API_key = '03e24162caecebf27726854d662383c7';
+
+			// se asigna a query el parametro obtenido del path
 			const query = actorId;
 			try {
 				const response = await axios.get(
-					`https://api.themoviedb.org/3/search/person?api_key=${keyivan}&query=${query}`
+					`https://api.themoviedb.org/3/search/person?api_key=${API_key}&query=${query}`
 				);
-
+				//Actualizacion del estado inicial
 				dispatch({
 					type: types.updateActor,
 					payload: response.data.results[0],
@@ -47,19 +50,18 @@ const ActorScreen = ({ history }) => {
 				});
 			} catch (error) {
 				console.error(error);
+				//Cambio de estado Error a true si hay algun error en la peticion
 				setErrorState(true);
 			}
 		};
 
 		//Ejecuta el metodo
 		getMovies();
-
-		console.log('Ejecutando...');
 	}, [actorId, dispatch]);
 
-	//metodo que se ejecuta al hacer clic en el boton return.
+	//Mtodo que se ejecuta al hacer clic en el boton return.
 	const handleReturn = () => {
-		//condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
+		//Condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
 		if (history.length <= 2) {
 			history.push('/');
 		} else {
@@ -70,9 +72,18 @@ const ActorScreen = ({ history }) => {
 
 	return (
 		<>
+			{/* operador condicional ternario para motrar codigo en caso de error en peticion API */}
 			{errorState || !actor || !movies || !movieDetails ? (
-				<div className='flex flex-column' style={{ backgroundColor: '#ffffff' }}>
-					<div style={{ padding: '2rem', borderBottom: '1px solid #cccccc' }}>
+				<div
+					className='flex flex-column'
+					style={{ backgroundColor: 'var(--primaryColor)' }}
+				>
+					<div
+						style={{
+							padding: '2rem',
+							borderBottom: '1px solid var(--borderPrimaryColor)',
+						}}
+					>
 						<Button onClick={handleReturn} type='primary'>
 							<ArrowLeftOutlined />
 							Regresar
@@ -85,7 +96,11 @@ const ActorScreen = ({ history }) => {
 					</div>
 				</div>
 			) : (
-				<div className='flex flex-column' style={{ backgroundColor: '#ffffff' }}>
+				// Pantalla de Detalle de actor
+				<div
+					className='flex flex-column'
+					style={{ backgroundColor: 'var(--primaryColor)' }}
+				>
 					<div className='actor-grid'>
 						<div className='grid-area-back' style={{ padding: '1rem' }}>
 							<Button onClick={handleReturn} type='primary'>
@@ -93,6 +108,7 @@ const ActorScreen = ({ history }) => {
 								Regresar
 							</Button>
 						</div>
+						{/* Seccion de Informacion del actor */}
 						<div className='grid-area-actor'>
 							{actor.profile_path ? (
 								<Image
@@ -111,6 +127,7 @@ const ActorScreen = ({ history }) => {
 
 							<div className='text-subtittle'>Popularidad: {actor.popularity}</div>
 						</div>
+						{/* Seccion de catalogo de peliculas */}
 						<div
 							className='grid-area-movies flex flex-column'
 							style={{ padding: '1rem' }}
@@ -124,11 +141,12 @@ const ActorScreen = ({ history }) => {
 								</div>
 							</div>
 						</div>
+						{/* Seccion de detalle de pelicula */}
 						<div
 							className='grid-area-descTittle flex flex-justify-between'
 							style={{
 								padding: '1.5rem 1rem 1.5rem 3rem',
-								borderTop: '1px solid #cccccc',
+								borderTop: '1px solid var(--borderPrimaryColor)',
 							}}
 						>
 							<div className='text-tittle text-bold'>{movieDetails.title}</div>
