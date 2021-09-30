@@ -3,8 +3,9 @@ import { types } from '../types/types';
 
 //Inicializacion del Estado
 const initialState = {
-	actor: {},
+	actor: { gender: 1 },
 	movies: [],
+	movieDetails: {},
 };
 
 //Función Reducer
@@ -12,12 +13,13 @@ const initialState = {
 const actorReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.updateActor:
-			// const { payload } = action;
-			console.log(action.payload, 'from Store');
 			return { ...state, actor: action.payload };
 
 		case types.updateMovies:
 			return { ...state, movies: action.payload };
+
+		case types.updateMovieDetails:
+			return { ...state, movieDetails: action.payload };
 
 		default:
 			return state;
