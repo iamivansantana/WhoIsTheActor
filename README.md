@@ -3,7 +3,9 @@
 _**Aplicación que permite hacer una busqueda de un actor famoso enviando solamente una imagen(jpg,png) de la persona,**_  
   
   
-_La aplicacion hace peticiones a diferentes APIs (1-whois.nomada 2-api.themoviedb) y muestra en pantallla una descripción general del actor y un listado de peliculas en las cuales ha participado, mostrando detalles de cada una de las perliculas al hacer clic sobre la tarjeta_
+_La aplicacion hace peticiones a diferentes APIs (1-whois.nomada 2-api.themoviedb) y muestra en pantallla una descripción general del actor y un listado de peliculas en las cuales ha participado, mostrando detalles de cada una de las perliculas al hacer clic sobre la tarjeta_  
+  
+  
 _Para el desarrollo de esta aplicación se utilizaron herramientas como: "Redux,React-redux,React-router-dom,Axios,Ant-Design,Responsive Design..._
 
 ## Comenzando 🚀
