@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'antd';
 
-const MovieCard = () => {
+const MovieCard = ({ card }) => {
 	const { Meta } = Card;
 	return (
 		<>
@@ -9,19 +9,19 @@ const MovieCard = () => {
 				<Card
 					hoverable
 					style={{
-						width: 150,
-						height: 260,
+						width: 180,
+						height: 340,
 						overflow: 'hidden',
 						scrollSnapAlign: 'end',
 					}}
 					cover={
 						<img
 							alt='example'
-							src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+							src={`https://image.tmdb.org/t/p/w500${card.poster_path}`}
 						/>
 					}
 				>
-					<Meta description='Harry poter y el calix de fuego' />
+					<Meta description={card.title} />
 				</Card>
 			</div>
 		</>
