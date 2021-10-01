@@ -1,12 +1,13 @@
 import { types } from '../../types/types';
+import { Suspense } from 'react';
 import React, { useEffect, useState } from 'react';
 import { Button, Image, Tag } from 'antd';
 import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
-import MovieCard from '../moviesCards/MovieCard';
 import './ActorScreen.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 const axios = require('axios').default;
+const MovieCard = React.lazy(() => import('../moviesCards/MovieCard'));
 
 const ActorScreen = ({ history }) => {
 	//Estado de error
@@ -108,12 +109,14 @@ const ActorScreen = ({ history }) => {
 								Regresar
 							</Button>
 						</div>
+
 						{/* Seccion de Informacion del actor */}
 						<div className='grid-area-actor'>
 							{actor.profile_path ? (
 								<Image
 									className='actor-img'
 									src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+									alt={`imgOf${actor.name}`}
 								/>
 							) : null}
 
@@ -135,13 +138,16 @@ const ActorScreen = ({ history }) => {
 							<div className='text-tittle text-bold'>PELICULAS</div>
 							<div className='carruselContainer'>
 								<div className='sliderCarousel flex flex-aling-center'>
-									{movies.map((card) => (
-										<MovieCard key={card.id} card={card} />
-									))}
+									<Suspense fallback={<div>Loading...</div>}>
+										{movies.map((card) => (
+											<MovieCard key={card.id} card={card} />
+										))}
+									</Suspense>
 								</div>
 							</div>
 						</div>
 						{/* Seccion de detalle de pelicula */}
+
 						<div
 							className='grid-area-descTittle flex flex-justify-between'
 							style={{
@@ -165,7 +171,7 @@ const ActorScreen = ({ history }) => {
 									<img
 										className='img-cover'
 										src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-										alt='img'
+										alt={`imgOf${movieDetails.title}`}
 									/>
 								) : null}
 							</div>

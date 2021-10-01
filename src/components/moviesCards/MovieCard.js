@@ -27,7 +27,9 @@ const MovieCard = ({ card }) => {
 					}}
 					cover={
 						<img
-							alt='example'
+							width='180px'
+							height='250px'
+							alt={card.title}
 							src={`https://image.tmdb.org/t/p/w500${card.poster_path}`}
 						/>
 					}
